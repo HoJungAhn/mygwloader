@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.skcc.classloader</groupId>
+	<artifactId>classLoader</artifactId>
+	<version>1.0.0.CI-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>Camel Component</name>
+	<url>http://www.springframework.org</url>
+	<description>
+		<![CDATA[
+      This project is a minimal jar utility with Spring configuration.
+    ]]>
+	</description>
+	<properties>
+		<!-- <java-version>1.5</java-version> -->
+		<!-- [START] *************** CORE *************** -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<cglib.version>2.2.2</cglib.version>
+		<log4j-version>1.2.17</log4j-version>
+		<log4jdbc-remix>0.2.7</log4jdbc-remix>
+		<logback-version>1.1.3</logback-version>
+		<mybatis-version>3.3.0</mybatis-version>
+		<org.mybatis.spring.version>1.2.3</org.mybatis.spring.version>
+		<commons-beanutils-bundle-version>1.9.2</commons-beanutils-bundle-version>
+		<commons-codec-version>1.10</commons-codec-version>
+		<commons-collections-version>3.2.2</commons-collections-version>
+		<commons-compress-version>1.10</commons-compress-version>
+		<commons-configuration-version>1.9</commons-configuration-version>
+		<commons-configuration-bundle-version>1.9_1</commons-configuration-bundle-version>
+		<commons-csv-version>1.1</commons-csv-version>
+		<commons-cli-version>1.3.1</commons-cli-version>
+		<commons-daemon-version>1.0.15</commons-daemon-version>
+		<commons-dbcp-version>1.4</commons-dbcp-version>
+		<commons-digester-1x-version>1.8.1</commons-digester-1x-version>
+		<commons-digester-version>2.1</commons-digester-version>
+		<commons-exec-version>1.3</commons-exec-version>
+		<commons-fileupload>1.3.1</commons-fileupload>
+		<commons-httpclient-bundle-version>3.1_7</commons-httpclient-bundle-version>
+		<commons-io-version>2.4</commons-io-version>
+		<commons-jexl2-version>2.1.1</commons-jexl2-version>
+		<commons-jxpath-version>1.3</commons-jxpath-version>
+		<commons-jci-version>1.1</commons-jci-version>
+		<commons-lang-version>2.6</commons-lang-version>
+		<commons-lang3-version>3.4</commons-lang3-version>
+		<commons-logging-version>1.2</commons-logging-version>
+		<commons-math-version>2.2</commons-math-version>
+		<commons-math3-version>3.5</commons-math3-version>
+		<commons-net-version>3.3</commons-net-version>
+		<commons-pool-version>1.6</commons-pool-version>
+		<commons-pool2-version>2.4.2</commons-pool2-version>
+		<commons-validator-version>1.4.1</commons-validator-version>
+		<dom4j-version>1.6.1</dom4j-version>
+<!-- 		<ehcache-version>2.7.4</ehcache-version> -->
+		<ehcache-version>2.6.11</ehcache-version>
+		<httpclient4-version>4.4.1</httpclient4-version>
+		<hibernate-validator-version>5.2.2.Final</hibernate-validator-version>
+		<ibatis.version>2.3.4.726</ibatis.version>
+		<jackson-version>1.9.13</jackson-version>
+		<jackson2-version>2.6.2</jackson2-version>
+		<javaee-api-verison>5</javaee-api-verison> <!-- TODO 검토 요망 -->
+		<jaxb-version>2.2.11</jaxb-version>
+		<jsonpath-version>0.8.1</jsonpath-version>
+		<validation-api-version>1.1.0.Final</validation-api-version>
+		<junit-version>4.11</junit-version>
+		<slf4j-version>1.7.12</slf4j-version>
+		<springframework32-version>3.2.15.RELEASE</springframework32-version>
+		<springframework4-version>4.1.9.RELEASE</springframework4-version>
+		<springframework-version>${springframework32-version}</springframework-version>
+		<springframework32.security-version>3.2.8.RELEASE</springframework32.security-version>
+		<springframework4.security-version>4.0.0.RELEASE</springframework4.security-version>
+		<springframework.security-version>${springframework32.security-version}</springframework.security-version>
+		<springframework-mobile-device-version>1.1.4.RELEASE</springframework-mobile-device-version>
+		<springframework-loaded-version>1.2.4.RELEASE</springframework-loaded-version>
+		<tiles2-version>2.2.2</tiles2-version> <!-- FOR JDK5 -->
+		<tiles3-version>3.0.5</tiles3-version> <!-- FOR OVER JDK5 -->
+		<tiles-version>${tiles3-version}</tiles-version>
+		<userAgentUtils-version>1.18</userAgentUtils-version>
+		<xalan-version>2.7.2</xalan-version>
+		<xerces-version>2.11.0</xerces-version>
+		<!-- [END] *************** CORE *************** -->
+	
+		<apachecame-version>2.13.4</apachecame-version>
+
+
+		<!-- [START] *************** PLUG IN *************** -->
+		<!-- Allows running the compiler in a separate process. If false it uses 
+			the built in compiler, while if true it will use an executable. -->
+		<compiler.fork>true</compiler.fork>
+		<maven-war-plugin-version>2.6</maven-war-plugin-version>
+		<maven-jar-plugin-version>2.6</maven-jar-plugin-version>
+		<maven-jar-plugin-version>2.6</maven-jar-plugin-version>
+
+		<jetty8-version>8.1.17.v20150415</jetty8-version>
+		<jetty9-version>9.2.11.v20150529</jetty9-version>
+		<jetty-version>${jetty8-version}</jetty-version>
+		<jetty-plugin-version>8.1.16.v20140903</jetty-plugin-version>
+
+		<!-- [END] *************** PLUG IN *************** -->
+
+		<!-- [START] EXTENSION -->
+		<camel-version>2.16.0</camel-version>
+		<spring-batch-version>3.0.7.RELEASE</spring-batch-version>
+		<spring-boot-version>1.2.6.RELEASE</spring-boot-version>
+		<spring-data-commons-version>1.6.5.RELEASE</spring-data-commons-version>
+		<spring-data-redis-version>1.6.0.RELEASE</spring-data-redis-version>
+		<spring-integration-version>2.2.6.RELEASE</spring-integration-version>
+		<spring-javaconfig-version>1.0.0-20090215</spring-javaconfig-version>
+		<quartz2-version>2.2.1</quartz2-version>
+		<quartz-version>1.8.6</quartz-version>
+		<!-- [END] EXTENSION -->
+
+		<!-- [START]ETC -->
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+	</properties>	
+	<dependencies>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-jci-core</artifactId>
+		    <version>${commons-jci-version}</version>
+		</dependency>	
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${springframework-version}</version>
+			<scope>test</scope>
+		</dependency>		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${springframework-version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${springframework-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.camel</groupId>
+		    <artifactId>camel-context</artifactId>
+		    <version>${camel-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-http</artifactId>
+			<version>${camel-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-http4</artifactId>
+			<version>${camel-version}</version>
+		</dependency>				
+		<dependency>
+		    <groupId>org.apache.camel</groupId>
+		    <artifactId>camel-spring</artifactId>
+		    <version>${camel-version}</version>
+		</dependency>		
+	    <dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-test</artifactId>
+			<version>${camel-version}</version>
+			<scope>test</scope>
+	    </dependency>		
+	    <dependency>
+	      <groupId>org.apache.camel</groupId>
+	      <artifactId>camel-test-spring3</artifactId>
+	      <version>${camel-version}</version>
+	      <scope>test</scope>
+	    </dependency>	    
+	    
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j-version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback-version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+ 
+		</plugins>
+	</build> 
+</project>
