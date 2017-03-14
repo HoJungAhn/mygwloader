@@ -62,5 +62,13 @@ public class GwFileResourceStore implements GwResouceStore{
         final String fileName = pResourceName.replace('/', File.separatorChar);
         return new File(rootPath, fileName);
     }
+    
+    public boolean exist(){
+    	return rootPath.exists();
+    }
+
+	public String getRoot() {
+		return rootPath.getPath();
+	}
 
 }

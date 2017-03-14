@@ -7,6 +7,12 @@ import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.beans.factory.support.SimpleInstantiationStrategy;
 
 public class GwClassReloadInstantiationStrategy extends SimpleInstantiationStrategy {
+	/**
+	 * instantiate override
+	 * 
+	 * method privilege 제외 
+	 */
+	@Override
 	public Object instantiate(RootBeanDefinition beanDefinition, String beanName, BeanFactory owner) {
 		if (beanDefinition.getMethodOverrides().isEmpty()) {
 			Class clazz = beanDefinition.getBeanClass();

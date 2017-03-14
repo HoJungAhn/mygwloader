@@ -20,6 +20,16 @@ public class GwObjectStorageResourceStore implements GwResouceStore{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public boolean exist() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public String getRoot() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 
