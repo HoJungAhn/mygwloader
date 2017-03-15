@@ -22,8 +22,12 @@ public class GwReloadClassLoader extends ClassLoader{
 	
 	private GwResourcesClassLoaderDelegator delegator;
 	
+	// class loader reload 시 최초 parent class loader를 사용하기 위해 저
+	private ClassLoader parent;
+	
 	public GwReloadClassLoader(ClassLoader parent){
 		super(parent);
+		this.parent = parent;
 		this.delegator = new GwResourcesClassLoaderDelegator(parent, this.stores, acceptClasses);
 	}
 	
@@ -58,7 +62,7 @@ public class GwReloadClassLoader extends ClassLoader{
 			System.arraycopy(stores, 0, newStores, 1, n);
 			newStores[0] = store;
 			stores = newStores;
-			delegator = new GwResourcesClassLoaderDelegator(getParent(), stores, acceptClasses);
+			delegator = new GwResourcesClassLoaderDelegator(parent, stores, acceptClasses);
 			return true;
 		} catch (final Exception e) {
 			logger.error("could not add resource store " + store);
@@ -92,13 +96,13 @@ public class GwReloadClassLoader extends ClassLoader{
 		}
 
 		stores = newStores;
-		delegator = new GwResourcesClassLoaderDelegator(getParent(), stores, acceptClasses);
+		delegator = new GwResourcesClassLoaderDelegator(parent, stores, acceptClasses);
 		return true;
 	}
 
 	public void reload() {
 		logger.debug("reloading : " + stores.length);
-		delegator = new GwResourcesClassLoaderDelegator(getParent(), stores, acceptClasses);
+		delegator = new GwResourcesClassLoaderDelegator(parent, stores, acceptClasses);
 	}
 	
 	@Override
@@ -113,7 +117,7 @@ public class GwReloadClassLoader extends ClassLoader{
 
 	@Override
 	public Class loadClass(String name) throws ClassNotFoundException {
-		return delegator.isAccepted(name) ? delegator.loadClass(name) : getParent().loadClass(name);
+		return delegator.isAccepted(name) ? delegator.loadClass(name) : parent.loadClass(name);
 	}
 
 	@Override

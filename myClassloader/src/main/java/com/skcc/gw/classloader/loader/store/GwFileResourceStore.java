@@ -29,7 +29,7 @@ public class GwFileResourceStore implements GwResouceStore{
             final byte[] data = IOUtils.toByteArray(is);
             return data;
         } catch (Exception e) {
-        	logger.error("can not read file :" + pResourceName, e);
+//        	logger.error("can not read file :" + pResourceName);
             return null;
         } finally {
             IOUtils.closeQuietly(is);
@@ -51,7 +51,7 @@ public class GwFileResourceStore implements GwResouceStore{
 			fout = new FileOutputStream(file);
 			IOUtils.write(pResourceData, fout);
 		}catch(IOException e){
-			logger.error("can not write file", e);
+//			logger.error("can not write file :" + pResourceName);
 		}finally{
 			IOUtils.closeQuietly(fout);
 		}

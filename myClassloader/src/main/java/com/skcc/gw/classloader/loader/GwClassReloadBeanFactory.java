@@ -23,6 +23,7 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.core.DecoratingClassLoader;
+import org.springframework.core.io.Resource;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 
@@ -37,15 +38,44 @@ public class GwClassReloadBeanFactory extends DefaultListableBeanFactory{
 	/*
 	 * TODO : 사용할지 않할지 확인 필요.
 	 */
-	private XmlBeanDefinitionReader reader;
+	private XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(this);
 	
 	public GwClassReloadBeanFactory(){
 		super();
-		reader = new XmlBeanDefinitionReader(this);
 	}
 	public GwClassReloadBeanFactory(BeanFactory parentBeanFactory){
 		super(parentBeanFactory);
-		reader = new XmlBeanDefinitionReader(this);
+	}
+	
+
+	/**
+	 * Create a new XmlBeanFactory with the given resource, which must be
+	 * parsable using DOM.
+	 * 
+	 * @param resource
+	 *            XML resource to load bean definitions from
+	 * @throws BeansException
+	 *             in case of loading or parsing errors
+	 */
+	public GwClassReloadBeanFactory(Resource resource) throws BeansException {
+		this(resource, null);
+		logger.debug("ClassReloadingBeanFactory(Resource resource)");
+	}
+	
+	/**
+	 * Create a new XmlBeanFactory with the given input stream, which must be
+	 * parsable using DOM.
+	 * 
+	 * @param resource
+	 *            XML resource to load bean definitions from
+	 * @param parentBeanFactory
+	 *            parent bean factory
+	 * @throws BeansException
+	 *             in case of loading or parsing errors
+	 */
+	public GwClassReloadBeanFactory(Resource resource, BeanFactory parentBeanFactory) throws BeansException {
+		super(parentBeanFactory);
+		this.reader.loadBeanDefinitions(resource);
 	}
 	
 	@Override
@@ -82,8 +112,7 @@ public class GwClassReloadBeanFactory extends DefaultListableBeanFactory{
 
 					}
 					String className = mbd.getBeanClassName();
-					return className == null ? null : ClassUtils.forName(
-							className, tempClassLoader);
+					return className == null ? null : ClassUtils.forName(className, tempClassLoader);
 				}
 			}
 		} catch (ClassNotFoundException ex) {
@@ -163,9 +192,7 @@ public class GwClassReloadBeanFactory extends DefaultListableBeanFactory{
 	}
 	
 	@Override
-	protected <T> T doGetBean(String name, Class<T> requiredType,
-	        Object[] args, boolean typeCheckOnly) throws BeansException {
-	    
+	protected <T> T doGetBean(String name, Class<T> requiredType, Object[] args, boolean typeCheckOnly) throws BeansException {
 	    T bean = null;
 	    try {
 	        bean = super.doGetBean(name, requiredType, args, typeCheckOnly);
