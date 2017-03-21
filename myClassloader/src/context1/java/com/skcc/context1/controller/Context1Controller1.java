@@ -10,7 +10,8 @@ public class Context1Controller1 {
 	@Autowired
 	private Context1Service1 service;
 	
-	public void testController() throws Exception{
+	public String testController() throws Exception{
 		System.out.println(service.getService());
+		return service.getService();
 	}
 }

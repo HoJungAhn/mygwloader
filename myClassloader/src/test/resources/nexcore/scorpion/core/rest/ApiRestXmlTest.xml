@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:camel="http://camel.apache.org/schema/spring" 
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<import resource="classpath:/META-INF/spring/app-context.xml"/> 
+	<camelContext id="S1" xmlns="http://camel.apache.org/schema/spring" trace="true">
+		<!-- service:jmx:rmi:///jndi/rmi://127.0.0.1:1088/jmxrmi/camel -->
+		<jmxAgent id="agent" createConnector="true" mbeanObjectDomainName="classloader" registryPort="1088" usePlatformMBeanServer="true" />
+		<restConfiguration bindingMode="auto" component="restlet" port="28080"/>
+		<rest>
+			<get uri="/{apiname}/{apipath}" consumes="application/json">
+				<to uri="direct:start"/>
+			</get>
+		</rest>
+		<route>
+			<from uri="direct:start" />
+			<transform>
+				<simple>call service ${header.apiname} ${header.apipath}</simple>
+			</transform>
+		</route>
+	</camelContext>
+
+</beans>
